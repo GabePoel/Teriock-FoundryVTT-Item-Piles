@@ -1,0 +1,34 @@
+{
+  "authors": [
+    {
+      "discord": "gpoel",
+      "name": "Gabriel Perko-Engel"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "description": "This module adds support for the Teriock system within the Item Piles module.",
+  "download": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.zip",
+  "esmodules": ["src/item-piles-teriock.mjs"],
+  "id": "item-piles-teriock",
+  "library": "false",
+  "manifest": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.json",
+  "readme": "README.md",
+  "relationships": {
+    "requires": [
+      {
+        "id": "item-piles",
+        "type": "module",
+        "manifest": "https://github.com/fantasycalendar/FoundryVTT-ItemPiles/releases/latest/download/module.json",
+        "compatibility": {
+          "minimum": "3.2.0"
+        }
+      }
+    ]
+  },
+  "title": "Item Piles: Teriock",
+  "url": "https://github.com/gabepoel/Teriock-FoundryVTT-Item-Piles",
+  "version": "1.0.0"
+}
