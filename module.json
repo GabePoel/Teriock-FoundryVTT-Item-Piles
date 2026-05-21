@@ -6,8 +6,8 @@
     }
   ],
   "compatibility": {
-    "minimum": "13",
-    "verified": "13"
+    "minimum": "14",
+    "verified": "14"
   },
   "description": "This module adds support for the Teriock system within the Item Piles module.",
   "download": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.zip",
@@ -30,5 +30,5 @@
   },
   "title": "Item Piles: Teriock",
   "url": "https://github.com/gabepoel/Teriock-FoundryVTT-Item-Piles",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

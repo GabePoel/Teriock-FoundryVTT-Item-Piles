@@ -1,6 +1,6 @@
 Hooks.once("item-piles-ready", async () => {
   const CONFIG = {
-    ACTOR_CLASS_TYPE: "character",
+    ACTOR_CLASS_TYPE: "inventory",
     CURRENCIES: [{
       type: "attribute",
       name: "TERIOCK.TERMS.Currency.heartstoneRuby",
@@ -160,54 +160,6 @@ Hooks.once("item-piles-ready", async () => {
     UNSTACKABLE_ITEM_TYPES: ["body", "mount", "power", "rank", "species", "wrapper"],
   };
   await game.itempiles.API.addSystemIntegration(CONFIG, "0.10.0");
-});
-
-Hooks.on("item-piles-createItemPile", (document) => {
-  document.actor?.createEmbeddedDocuments("ActiveEffect", [{
-    name: "Disable Encumbered", type: "consequence", system: {
-      automations: {
-        pileImmunity0001: {
-          _id: "pileImmunity0001",
-          type: "protection",
-          relation: "immunities",
-          category: "statuses",
-          value: "encumbered",
-        },
-      },
-    },
-  }, {
-    name: "Disable Down", type: "consequence", system: {
-      automations: {
-        pileImmunity0002: {
-          _id: "pileImmunity0002", type: "protection", relation: "immunities", category: "statuses", value: "down",
-        },
-      },
-    },
-  }, {
-    name: "Disable Lighting", type: "consequence", system: {
-      automations: {
-        pileChanges00001: {
-          _id: "pileChanges00001", type: "changes", changes: [{
-            key: "system.light.dim",
-            mode: 5,
-            priority: 150,
-            qualifier: "1",
-            target: "Actor",
-            time: "normal",
-            value: "0",
-          }, {
-            key: "system.light.bright",
-            mode: 5,
-            priority: 150,
-            qualifier: "1",
-            target: "Actor",
-            time: "normal",
-            value: "0",
-          }],
-        },
-      },
-    },
-  }]);
 });
 
 Hooks.on("preCreateItem", (item) => {
