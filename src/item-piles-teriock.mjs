@@ -150,23 +150,49 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_CLASS_LOOT_TYPE: "equipment",
     ITEM_CLASS_WEAPON_TYPE: "equipment",
     ITEM_FILTERS: [{
-      path: "type", filters: "body,mount,power,rank,species,wrapper",
+      path: "type", filters: "archetype,body,mount,power,rank,species,wrapper",
     }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity",
-    ITEM_SIMILARITIES: ["name", "type"],
+    ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumable", "system._sup"],
     QUANTITY_FOR_PRICE_ATTRIBUTE: "flags.item-piles.system.quantityForPrice",
     SECONDARY_CURRENCIES: [],
-    UNSTACKABLE_ITEM_TYPES: ["body", "mount", "power", "rank", "species", "wrapper"],
+    UNSTACKABLE_ITEM_TYPES: ["archetype", "body", "mount", "power", "rank", "species"],
+    ITEM_TYPE_HANDLERS: {
+      GLOBAL: {
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED]: ({item}) => {
+          const itemData = item instanceof Item ? item.toObject() : item;
+          return itemData?.system?._sup;
+        },
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
+      },
+      equipment: {
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.CONTENTS]: ({item}) => {
+          if (!item.parent) return [];
+          return out.equipment;
+        },
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.TRANSFER]: ({item, items, raw = false} = {}) => {
+          if (!item.parent) return items;
+          const subs = item.allSubs?.contents ?? [];
+          items.push(...subs.map(s => raw ? s : s.toObject()));
+          return items;
+        }
+      }
+    }
   };
-  await game.itempiles.API.addSystemIntegration(CONFIG, "0.10.0");
+  await game.itempiles.API.addSystemIntegration(CONFIG, "0.12.0");
 });
 
-Hooks.on("preCreateItem", (item) => {
+Hooks.on("preCreateItem", (item, _data, options) => {
   if (item.type === "equipment") {
     item.updateSource({
       "flags.item-piles.item.canStack": toFlag(foundry.utils.getProperty(item, "system.consumable")),
     });
+    if (typeof item.actor?.getFlag === "function") {
+      if (item.actor.getFlag("item-piles", "data")?.enabled) {
+        options.dontFilterSubs = true;
+      }
+    }
   }
 });
 
