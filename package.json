@@ -1,7 +1,17 @@
 {
   "name": "item-piles-teriock",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "scripts": {
+    "dprint:check": "dprint check",
+    "dprint:fix": "dprint fmt",
+    "lint:check": "eslint src/**/*",
+    "lint:fix": "eslint --fix src/**/*"
+  },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "dprint": "^0.54.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-jsdoc": "^62.9.0",
+    "eslint-plugin-perfectionist": "^5.9.0",
+    "typescript-eslint": "^8.44.1"
   }
 }

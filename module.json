@@ -17,6 +17,16 @@
   "manifest": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.json",
   "readme": "README.md",
   "relationships": {
+    "systems": [
+      {
+        "id": "teriock",
+        "type": "system",
+        "compatibility": {
+          "minimum": "0.12",
+          "verified": "0.12"
+        }
+      }
+    ],
     "requires": [
       {
         "id": "item-piles",

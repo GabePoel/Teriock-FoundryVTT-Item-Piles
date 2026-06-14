@@ -2,183 +2,159 @@ Hooks.once("item-piles-ready", async () => {
   const CONFIG = {
     ACTOR_CLASS_TYPE: "inventory",
     CURRENCIES: [{
-      type: "attribute",
-      name: "TERIOCK.TERMS.Currency.heartstoneRuby",
-      img: "systems/teriock/src/icons/currency/heartstone-ruby.webp",
       abbreviation: "{#}HR",
-      data: {
-        path: "system.money.heartstoneRuby",
-      },
-      primary: false,
+      data: { path: "system.money.heartstoneRuby" },
       exchangeRate: 5000,
-      index: 0,
       id: "system.money.heartstoneRuby",
+      img: "systems/teriock/src/icons/currency/heartstone-ruby.webp",
+      index: 0,
+      name: "TERIOCK.TERMS.Currency.heartstoneRuby",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.magusQuartz",
-      img: "systems/teriock/src/icons/currency/magus-quartz.webp",
+    }, {
       abbreviation: "{#}MQ",
-      data: {
-        path: "system.money.magusQuartz",
-      },
-      primary: false,
+      data: { path: "system.money.magusQuartz" },
       exchangeRate: 1000,
-      index: 1,
       id: "system.money.magusQuartz",
+      img: "systems/teriock/src/icons/currency/magus-quartz.webp",
+      index: 1,
+      name: "TERIOCK.TERMS.Currency.magusQuartz",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.moonOpal",
-      img: "systems/teriock/src/icons/currency/moon-opal.webp",
+    }, {
       abbreviation: "{#}MO",
-      data: {
-        path: "system.money.moonOpal",
-      },
-      primary: false,
+      data: { path: "system.money.moonOpal" },
       exchangeRate: 500,
-      index: 2,
       id: "system.money.moonOpal",
+      img: "systems/teriock/src/icons/currency/moon-opal.webp",
+      index: 2,
+      name: "TERIOCK.TERMS.Currency.moonOpal",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.dragonEmerald",
-      img: "systems/teriock/src/icons/currency/dragon-emerald.webp",
+    }, {
       abbreviation: "{#}DE",
-      data: {
-        path: "system.money.dragonEmerald",
-      },
-      primary: false,
+      data: { path: "system.money.dragonEmerald" },
       exchangeRate: 100,
-      index: 3,
       id: "system.money.dragonEmerald",
+      img: "systems/teriock/src/icons/currency/dragon-emerald.webp",
+      index: 3,
+      name: "TERIOCK.TERMS.Currency.dragonEmerald",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.snowDiamond",
-      img: "systems/teriock/src/icons/currency/snow-diamond.webp",
+    }, {
       abbreviation: "{#}SD",
-      data: {
-        path: "system.money.snowDiamond",
-      },
-      primary: false,
+      data: { path: "system.money.snowDiamond" },
       exchangeRate: 50,
-      index: 4,
       id: "system.money.snowDiamond",
+      img: "systems/teriock/src/icons/currency/snow-diamond.webp",
+      index: 4,
+      name: "TERIOCK.TERMS.Currency.snowDiamond",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.pixiePlumAmethyst",
-      img: "systems/teriock/src/icons/currency/pixie-plum-amethyst.webp",
+    }, {
       abbreviation: "{#}PA",
-      data: {
-        path: "system.money.pixiePlumAmethyst",
-      },
-      primary: false,
+      data: { path: "system.money.pixiePlumAmethyst" },
       exchangeRate: 20,
-      index: 5,
       id: "system.money.pixiePlumAmethyst",
+      img: "systems/teriock/src/icons/currency/pixie-plum-amethyst.webp",
+      index: 5,
+      name: "TERIOCK.TERMS.Currency.pixiePlumAmethyst",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.fireEyeRuby",
-      img: "systems/teriock/src/icons/currency/fire-eye-ruby.webp",
+    }, {
       abbreviation: "{#}FR",
-      data: {
-        path: "system.money.fireEyeRuby",
-      },
-      primary: false,
+      data: { path: "system.money.fireEyeRuby" },
       exchangeRate: 10,
-      index: 6,
       id: "system.money.fireEyeRuby",
-      secondary: false,
-    }, {
-      type: "attribute",
-      name: "TERIOCK.TERMS.Currency.entTearAmber",
-      img: "systems/teriock/src/icons/currency/ent-tear-amber.webp",
-      abbreviation: "{#}EA",
-      data: {
-        path: "system.money.entTearAmber",
-      },
+      img: "systems/teriock/src/icons/currency/fire-eye-ruby.webp",
+      index: 6,
+      name: "TERIOCK.TERMS.Currency.fireEyeRuby",
       primary: false,
+      secondary: false,
+      type: "attribute",
+    }, {
+      abbreviation: "{#}EA",
+      data: { path: "system.money.entTearAmber" },
       exchangeRate: 5,
-      index: 7,
       id: "system.money.entTearAmber",
+      img: "systems/teriock/src/icons/currency/ent-tear-amber.webp",
+      index: 7,
+      name: "TERIOCK.TERMS.Currency.entTearAmber",
+      primary: false,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.gold",
-      img: "systems/teriock/src/icons/currency/gold.webp",
+    }, {
       abbreviation: "{#}GP",
-      data: {
-        path: "system.money.gold",
-      },
-      primary: true,
+      data: { path: "system.money.gold" },
       exchangeRate: 1,
-      index: 8,
       id: "system.money.gold",
+      img: "systems/teriock/src/icons/currency/gold.webp",
+      index: 8,
+      name: "TERIOCK.TERMS.Currency.gold",
+      primary: true,
       secondary: false,
-    }, {
       type: "attribute",
-      name: "TERIOCK.TERMS.Currency.silver",
-      img: "systems/teriock/src/icons/currency/silver.webp",
+    }, {
       abbreviation: "{#}SP",
-      data: {
-        path: "system.money.silver",
-      },
-      primary: true,
+      data: { path: "system.money.silver" },
       exchangeRate: 0.1,
-      index: 9,
       id: "system.money.silver",
-      secondary: false,
-    }, {
-      type: "attribute",
-      name: "TERIOCK.TERMS.Currency.copper",
-      img: "systems/teriock/src/icons/currency/copper.webp",
-      abbreviation: "{#}CP",
-      data: {
-        path: "system.money.copper",
-      },
+      img: "systems/teriock/src/icons/currency/silver.webp",
+      index: 9,
+      name: "TERIOCK.TERMS.Currency.silver",
       primary: true,
-      exchangeRate: 0.01,
-      index: 10,
-      id: "system.money.copper",
       secondary: false,
+      type: "attribute",
+    }, {
+      abbreviation: "{#}CP",
+      data: { path: "system.money.copper" },
+      exchangeRate: 0.01,
+      id: "system.money.copper",
+      img: "systems/teriock/src/icons/currency/copper.webp",
+      index: 10,
+      name: "TERIOCK.TERMS.Currency.copper",
+      primary: true,
+      secondary: false,
+      type: "attribute",
     }],
     CURRENCY_DECIMAL_DIGITS: 0.00001,
     ITEM_CLASS_EQUIPMENT_TYPE: "equipment",
     ITEM_CLASS_LOOT_TYPE: "equipment",
     ITEM_CLASS_WEAPON_TYPE: "equipment",
-    ITEM_FILTERS: [{
-      path: "type", filters: "archetype,body,mount,power,rank,species,wrapper",
-    }],
+    ITEM_FILTERS: [{ filters: "archetype,body,mount,power,rank,species,wrapper", path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity",
     ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumable", "system._sup"],
-    QUANTITY_FOR_PRICE_ATTRIBUTE: "flags.item-piles.system.quantityForPrice",
-    SECONDARY_CURRENCIES: [],
-    UNSTACKABLE_ITEM_TYPES: ["archetype", "body", "mount", "power", "rank", "species"],
     ITEM_TYPE_HANDLERS: {
-      GLOBAL: {
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED]: ({item}) => {
-          const itemData = item instanceof Item ? item.toObject() : item;
-          return itemData?.system?._sup;
-        },
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
-      },
       equipment: {
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.CONTENTS]: ({item}) => {
-          if (!item.parent) return [];
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.CONTENTS]: ({ item }) => {
+          if (!item.parent) { return []; }
           return out.equipment;
         },
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.TRANSFER]: ({item, items, raw = false} = {}) => {
-          if (!item.parent) return items;
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.TRANSFER]: ({ item, items, raw = false } = {}) => {
+          if (!item.parent) { return items; }
           const subs = item.allSubs?.contents ?? [];
           items.push(...subs.map(s => raw ? s : s.toObject()));
           return items;
-        }
-      }
-    }
+        },
+      },
+      GLOBAL: {
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
+        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED]: ({ item }) => {
+          const itemData = item instanceof Item ? item.toObject() : item;
+          return itemData?.system?._sup;
+        },
+      },
+    },
+    QUANTITY_FOR_PRICE_ATTRIBUTE: "flags.item-piles.system.quantityForPrice",
+    SECONDARY_CURRENCIES: [],
+    UNSTACKABLE_ITEM_TYPES: ["archetype", "body", "mount", "power", "rank", "species"],
   };
   await game.itempiles.API.addSystemIntegration(CONFIG, "0.12.0");
 });
@@ -197,11 +173,21 @@ Hooks.on("preCreateItem", (item, _data, options) => {
 });
 
 Hooks.on("preUpdateItem", (item, changed) => {
-  if ((item.type === "equipment" || changed.type === "equipment") && foundry.utils.hasProperty(changed, "system.consumable")) {
-    foundry.utils.setProperty(changed, "flags.item-piles.item.canStack", toFlag(foundry.utils.getProperty(changed, "system.consumable")));
+  if (
+    (item.type === "equipment" || changed.type === "equipment")
+    && foundry.utils.hasProperty(changed, "system.consumable")
+  ) {
+    foundry.utils.setProperty(
+      changed,
+      "flags.item-piles.item.canStack",
+      toFlag(foundry.utils.getProperty(changed, "system.consumable")),
+    );
   }
 });
 
+/**
+ * @param consumable
+ */
 function toFlag(consumable) {
   return consumable ? "default" : false;
 }
