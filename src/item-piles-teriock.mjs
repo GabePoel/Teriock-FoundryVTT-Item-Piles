@@ -129,7 +129,7 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_CLASS_WEAPON_TYPE: "equipment",
     ITEM_FILTERS: [{ filters: "archetype,body,mount,power,rank,species,wrapper", path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
-    ITEM_QUANTITY_ATTRIBUTE: "system.quantity",
+    ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
     ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumable", "system._sup"],
     ITEM_TYPE_HANDLERS: {
       equipment: {
