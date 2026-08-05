@@ -23,7 +23,7 @@
         "type": "system",
         "compatibility": {
           "minimum": "0.12",
-          "verified": "0.12"
+          "verified": "0.14"
         }
       }
     ],
