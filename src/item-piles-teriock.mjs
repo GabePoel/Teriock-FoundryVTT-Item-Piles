@@ -2,26 +2,28 @@ Hooks.once("item-piles-ready", async () => {
   let n = 0;
   const CONFIG = {
     ACTOR_CLASS_TYPE: "inventory",
-    CURRENCIES: Object.entries(TERIOCK.config.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(([k, v]) => {
-      const kebab = teriock.helpers.string.toKebabCase(k);
-      const words = kebab.split("-");
-      if (words.length === 1) { words.push("p"); }
-      const a = words[0][0].titleCase();
-      const b = words.at(-1)[0].titleCase();
-      const abbreviation = `{#}${a}${b}`;
-      return {
-        abbreviation,
-        data: { path: `system.money.${k}` },
-        exchangeRate: v.conversion,
-        id: `system.money.${k}`,
-        img: `systems/teriock/src/icons/currency/${kebab}.webp`,
-        index: n++,
-        name: v.label,
-        primary: v.conversion <= 1,
-        secondary: false,
-        type: "attribute",
-      };
-    }),
+    CURRENCIES: Object.entries(TERIOCK.config.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
+      ([k, v]) => {
+        const kebab = teriock.helpers.string.toKebabCase(k);
+        const words = kebab.split("-");
+        if (words.length === 1) { words.push("p"); }
+        const a = words[0][0].titleCase();
+        const b = words.at(-1)[0].titleCase();
+        const abbreviation = `{#}${a}${b}`;
+        return {
+          abbreviation,
+          data: { path: `system.money.${k}` },
+          exchangeRate: v.conversion,
+          id: `system.money.${k}`,
+          img: `systems/teriock/src/icons/currency/${kebab}.webp`,
+          index: n++,
+          name: v.label,
+          primary: v.conversion <= 1,
+          secondary: false,
+          type: "attribute",
+        };
+      },
+    ),
     CURRENCY_DECIMAL_DIGITS: 0.01,
     ITEM_CLASS_EQUIPMENT_TYPE: "equipment",
     ITEM_CLASS_LOOT_TYPE: "equipment",
@@ -31,18 +33,6 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
     ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumable", "system._sup"],
     ITEM_TYPE_HANDLERS: {
-      equipment: {
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.CONTENTS]: ({ item }) => {
-          if (!item.parent) { return []; }
-          return out.equipment;
-        },
-        [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.TRANSFER]: ({ item, items, raw = false } = {}) => {
-          if (!item.parent) { return items; }
-          const subs = item.allSubs?.contents ?? [];
-          items.push(...subs.map(s => raw ? s : s.toObject()));
-          return items;
-        },
-      },
       GLOBAL: {
         [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
         [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED]: ({ item }) => {
@@ -63,11 +53,6 @@ Hooks.on("preCreateItem", (item, _data, options) => {
     item.updateSource({
       "flags.item-piles.item.canStack": toFlag(foundry.utils.getProperty(item, "system.consumable")),
     });
-    if (typeof item.actor?.getFlag === "function") {
-      if (item.actor.getFlag("item-piles", "data")?.enabled) {
-        options.dontFilterSubs = true;
-      }
-    }
   }
 });
 
