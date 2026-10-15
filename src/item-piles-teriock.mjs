@@ -15,7 +15,7 @@ Hooks.once("item-piles-ready", async () => {
           data: { path: `system.money.${k}` },
           exchangeRate: v.conversion,
           id: `system.money.${k}`,
-          img: `systems/teriock/src/icons/currency/${kebab}.webp`,
+          img: v.img,
           index: n++,
           name: v.label,
           primary: v.conversion <= 1,
