@@ -2,9 +2,9 @@ Hooks.once("item-piles-ready", async () => {
   let n = 0;
   const CONFIG = {
     ACTOR_CLASS_TYPE: "inventory",
-    CURRENCIES: Object.entries(TERIOCK.config.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
+    CURRENCIES: Object.entries(TERIOCK.CONFIG.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
       ([k, v]) => {
-        const kebab = teriock.helpers.string.toKebabCase(k);
+        const kebab = teriock.utils.toKebabCase(k);
         const words = kebab.split("-");
         if (words.length === 1) { words.push("p"); }
         const a = words[0][0].titleCase();
