@@ -12,6 +12,7 @@
   "description": "This module adds support for the Teriock system within the Item Piles module.",
   "download": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.zip",
   "esmodules": ["src/item-piles-teriock.mjs"],
+  "styles": ["src/item-piles-teriock.css"],
   "id": "item-piles-teriock",
   "library": "false",
   "manifest": "https://github.com/GabePoel/Teriock-FoundryVTT-Item-Piles/releases/latest/download/module.json",
@@ -40,5 +41,5 @@
   },
   "title": "Item Piles: Teriock",
   "url": "https://github.com/gabepoel/Teriock-FoundryVTT-Item-Piles",
-  "version": "1.1.8"
+  "version": "1.1.9"
 }
