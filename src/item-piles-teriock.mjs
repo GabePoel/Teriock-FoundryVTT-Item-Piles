@@ -1,5 +1,6 @@
 Hooks.once("item-piles-ready", async () => {
   let n = 0;
+  const nonEquipmentTypes = Item.implementation.TYPES.filter(t => t !== "equipment");
   const CONFIG = {
     ACTOR_CLASS_TYPE: "inventory",
     CURRENCIES: Object.entries(TERIOCK.CONFIG.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
@@ -28,7 +29,7 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_CLASS_EQUIPMENT_TYPE: "equipment",
     ITEM_CLASS_LOOT_TYPE: "equipment",
     ITEM_CLASS_WEAPON_TYPE: "equipment",
-    ITEM_FILTERS: [{ filters: "archetype,body,mount,power,rank,species,wrapper", path: "type" }],
+    ITEM_FILTERS: [{ filters: nonEquipmentTypes.join(","), path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
     ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumption.enabled", "system._sup"],
@@ -43,7 +44,7 @@ Hooks.once("item-piles-ready", async () => {
     },
     QUANTITY_FOR_PRICE_ATTRIBUTE: "flags.item-piles.system.quantityForPrice",
     SECONDARY_CURRENCIES: [],
-    UNSTACKABLE_ITEM_TYPES: ["archetype", "body", "mount", "power", "rank", "species"],
+    UNSTACKABLE_ITEM_TYPES: nonEquipmentTypes,
   };
   await game.itempiles.API.addSystemIntegration(CONFIG, "0.12.0");
 });
