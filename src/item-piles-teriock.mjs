@@ -31,7 +31,7 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_FILTERS: [{ filters: "archetype,body,mount,power,rank,species,wrapper", path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
-    ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumable", "system._sup"],
+    ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumption.enabled", "system._sup"],
     ITEM_TYPE_HANDLERS: {
       GLOBAL: {
         [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
@@ -51,7 +51,7 @@ Hooks.once("item-piles-ready", async () => {
 Hooks.on("preCreateItem", (item, _data, options) => {
   if (item.type === "equipment") {
     item.updateSource({
-      "flags.item-piles.item.canStack": toFlag(foundry.utils.getProperty(item, "system.consumable")),
+      "flags.item-piles.item.canStack": toFlag(foundry.utils.getProperty(item, "system.consumption.enabled")),
     });
   }
 });
@@ -59,12 +59,12 @@ Hooks.on("preCreateItem", (item, _data, options) => {
 Hooks.on("preUpdateItem", (item, changed) => {
   if (
     (item.type === "equipment" || changed.type === "equipment")
-    && foundry.utils.hasProperty(changed, "system.consumable")
+    && foundry.utils.hasProperty(changed, "system.consumption.enabled")
   ) {
     foundry.utils.setProperty(
       changed,
       "flags.item-piles.item.canStack",
-      toFlag(foundry.utils.getProperty(changed, "system.consumable")),
+      toFlag(foundry.utils.getProperty(changed, "system.consumption.enabled")),
     );
   }
 });
