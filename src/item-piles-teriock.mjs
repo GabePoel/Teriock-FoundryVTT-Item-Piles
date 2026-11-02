@@ -6,7 +6,7 @@ Hooks.once("item-piles-ready", async () => {
     CURRENCIES: Object.entries(TERIOCK.CONFIG.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
       ([k, v]) => {
         return {
-          abbreviation: `{#} ${v.symbol}`,
+          abbreviation: `{#}${v.symbol}`,
           data: { path: `system.money.${k}` },
           exchangeRate: v.conversion,
           id: `system.money.${k}`,
