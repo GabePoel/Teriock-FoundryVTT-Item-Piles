@@ -23,7 +23,7 @@
         "id": "teriock",
         "type": "system",
         "compatibility": {
-          "minimum": "0.15.55",
+          "minimum": "0.15.74",
           "verified": "0.15"
         }
       }
@@ -41,5 +41,5 @@
   },
   "title": "Item Piles: Teriock",
   "url": "https://github.com/gabepoel/Teriock-FoundryVTT-Item-Piles",
-  "version": "1.1.11"
+  "version": "1.1.12"
 }

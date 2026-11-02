@@ -5,14 +5,8 @@ Hooks.once("item-piles-ready", async () => {
     ACTOR_CLASS_TYPE: "inventory",
     CURRENCIES: Object.entries(TERIOCK.CONFIG.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
       ([k, v]) => {
-        const kebab = teriock.utils.toKebabCase(k);
-        const words = kebab.split("-");
-        if (words.length === 1) { words.push("p"); }
-        const a = words[0][0].titleCase();
-        const b = words.at(-1)[0].titleCase();
-        const abbreviation = `{#}${a}${b}`;
         return {
-          abbreviation,
+          abbreviation: `{#} ${v.symbol}`,
           data: { path: `system.money.${k}` },
           exchangeRate: v.conversion,
           id: `system.money.${k}`,
@@ -29,6 +23,7 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_CLASS_EQUIPMENT_TYPE: "equipment",
     ITEM_CLASS_LOOT_TYPE: "equipment",
     ITEM_CLASS_WEAPON_TYPE: "equipment",
+    ITEM_COST_TRANSFORMER: getGoldPrice,
     ITEM_FILTERS: [{ filters: nonEquipmentTypes.join(","), path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
@@ -49,30 +44,40 @@ Hooks.once("item-piles-ready", async () => {
   await game.itempiles.API.addSystemIntegration(CONFIG, "0.12.0");
 });
 
-Hooks.on("preCreateItem", (item, _data, options) => {
+Hooks.on("preCreateItem", item => {
   if (item.type === "equipment") {
-    item.updateSource({
-      "flags.item-piles.item.canStack": toFlag(foundry.utils.getProperty(item, "system.consumption.enabled")),
-    });
+    item.updateSource({ "flags.item-piles.item.canStack": getStackFlag(item._source.system) });
   }
 });
 
 Hooks.on("preUpdateItem", (item, changed) => {
   if (
     (item.type === "equipment" || changed.type === "equipment")
-    && foundry.utils.hasProperty(changed, "system.consumption.enabled")
+    && ["system.consumption.enabled", "system.storage.enabled"].some(p => foundry.utils.hasProperty(changed, p))
   ) {
-    foundry.utils.setProperty(
-      changed,
-      "flags.item-piles.item.canStack",
-      toFlag(foundry.utils.getProperty(changed, "system.consumption.enabled")),
-    );
+    const system = foundry.utils.mergeObject(item._source.system, changed.system ?? {}, { inplace: false });
+    foundry.utils.setProperty(changed, "flags.item-piles.item.canStack", getStackFlag(system));
   }
 });
 
 /**
- * @param consumable
+ * Get price of an item in gold.
+ * @param {object} item
+ * @returns {number}
  */
-function toFlag(consumable) {
-  return consumable ? "default" : false;
+function getGoldPrice(item) {
+  if (item instanceof Item) { return item.system.price?.value ?? 0; }
+  const price = foundry.utils.getProperty(item, "system.price");
+  // Handling for old price format
+  if (typeof price === "number") { return price; }
+  return new teriock.data.models.CurrencyUnitModel(price ?? {}).value;
+}
+
+/**
+ * Equipment can only stack if consumption is enabled and storage isn't.
+ * @param {object} system
+ * @returns {"default"|false}
+ */
+function getStackFlag(system) {
+  return system?.consumption?.enabled && !system?.storage?.enabled ? "default" : false;
 }
