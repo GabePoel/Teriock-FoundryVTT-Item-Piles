@@ -5,14 +5,8 @@ Hooks.once("item-piles-ready", async () => {
     ACTOR_CLASS_TYPE: "inventory",
     CURRENCIES: Object.entries(TERIOCK.CONFIG.currency).sort((a, b) => b[1].conversion - a[1].conversion).map(
       ([k, v]) => {
-        const kebab = teriock.utils.toKebabCase(k);
-        const words = kebab.split("-");
-        if (words.length === 1) { words.push("p"); }
-        const a = words[0][0].titleCase();
-        const b = words.at(-1)[0].titleCase();
-        const abbreviation = `{#}${a}${b}`;
         return {
-          abbreviation,
+          abbreviation: `{#}${v.symbol}`,
           data: { path: `system.money.${k}` },
           exchangeRate: v.conversion,
           id: `system.money.${k}`,
@@ -32,7 +26,7 @@ Hooks.once("item-piles-ready", async () => {
     ITEM_FILTERS: [{ filters: nonEquipmentTypes.join(","), path: "type" }],
     ITEM_PRICE_ATTRIBUTE: "system.price",
     ITEM_QUANTITY_ATTRIBUTE: "system.quantity.value",
-    ITEM_SIMILARITIES: ["name", "type", "system.identifier", "system.consumption.enabled", "system._sup"],
+    ITEM_SIMILARITIES: ["name", "type", "system.slug", "system.consumption.enabled", "system._sup"],
     ITEM_TYPE_HANDLERS: {
       GLOBAL: {
         [game.itempiles.CONSTANTS.ITEM_TYPE_METHODS.IS_CONTAINED_PATH]: "system._sup",
