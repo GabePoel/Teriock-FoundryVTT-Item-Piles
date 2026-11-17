@@ -68,9 +68,9 @@ Hooks.on("preUpdateItem", (item, changed) => {
 function getGoldPrice(item) {
   if (item instanceof Item) { return item.system.price?.value ?? 0; }
   const price = foundry.utils.getProperty(item, "system.price");
-  // Handling for old price format
+  // Handling for numerical prices
   if (typeof price === "number") { return price; }
-  return new teriock.data.models.CurrencyUnitModel(price ?? {}).value;
+  return new teriock.data.models.MoneyUnitModel(price ?? {}).value;
 }
 
 /**
